@@ -1,0 +1,25 @@
+<!--
+  Copyright 2025 Lokman Ramdani
+  SPDX-License-Identifier: MIT
+-->
+
+<!-- Square splash icon: the Rin lettermark centred with generous padding so it stays inside the
+     Android 12+ splash circle (safe zone is the inner ~2/3 of the canvas). -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="512dp"
+    android:height="512dp"
+    android:viewportWidth="512"
+    android:viewportHeight="512">
+    <group
+        android:translateX="130.75"
+        android:translateY="338.25"
+        android:scaleX="0.235"
+        android:scaleY="0.235">
+        <path
+            android:fillColor="#9A9183"
+            android:pathData="M0,-67.5 V-632.5 H348 V-455.5 H188 V-67.5 Z M64,-126.5 H124 V-515.5 H284 V-572.5 H64 Z M718,-67.5 V-244.5 H878 V-632.5 H1066 V-67.5 Z M782,-127.5 H1002 V-573.5 H942 V-184.5 H782 Z" />
+        <path
+            android:fillColor="#E8503A"
+            android:pathData="M478,-700 H588 V0 H478 Z" />
+    </group>
+</vector>

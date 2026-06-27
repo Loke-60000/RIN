@@ -1,0 +1,7 @@
+{
+  "background":"#FFFFFF","onBackground":"#1F1F1F",
+  "surface":"#FFFFFF","onSurface":"#1F1F1F",
+  "surfaceVariant":"#F0F4F9","onSurfaceVariant":"#444746",
+  "outline":"#747775","outlineVariant":"#C4C7C5",
+  "surfaceContainerLowest":"#FFFFFF","surfaceContainerLow":"#F4F5F7","surfaceContainer":"#EEF0F2","surfaceContainerHigh":"#E9EBEE","surfaceContainerHighest":"#E3E5E8"
+}

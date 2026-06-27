@@ -1,0 +1,4 @@
+{
+  "light": {"primary":"#FA500F","onPrimary":"#FFFFFF","primaryContainer":"#FFE0CC","onPrimaryContainer":"#3A1300","secondary":"#FF8205","secondaryContainer":"#FFE0CC","onSecondaryContainer":"#3A1300","error":"#E10500"},
+  "dark":  {"primary":"#FF8205","onPrimary":"#3A1300","primaryContainer":"#A33400","onPrimaryContainer":"#FFE0CC","secondary":"#FFD800","secondaryContainer":"#A33400","onSecondaryContainer":"#FFE0CC","error":"#FF6B5E"}
+}

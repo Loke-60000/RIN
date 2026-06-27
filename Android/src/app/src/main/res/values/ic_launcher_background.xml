@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright 2025 Lokman Ramdani
+  SPDX-License-Identifier: MIT
+-->
+
+<resources>
+    <color name="ic_launcher_background">#ffffff</color>
+</resources>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2025 Lokman Ramdani. SPDX-License-Identifier: MIT -->
+
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="app.kaiwa.worker">
+
+  <uses-sdk
+      android:minSdkVersion="31"
+      android:targetSdkVersion="35"/>
+  <application/>
+</manifest>

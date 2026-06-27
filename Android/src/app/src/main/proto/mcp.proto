@@ -1,0 +1,46 @@
+// Copyright 2025 Lokman Ramdani
+// SPDX-License-Identifier: MIT
+
+syntax = "proto3";
+
+package app.kaiwa.proto;
+
+option java_package = "app.kaiwa.proto";
+option java_outer_classname = "McpProto";
+option java_multiple_files = true;
+
+// A collection of MCP servers.
+message McpServers {
+  // List of individual MCP servers.
+  repeated McpServer mcp_server = 1;
+}
+
+// A single MCP server.
+message McpServer {
+  // The URL of the MCP server.
+  string url = 1;
+  // The tools available on this MCP server.
+  repeated McpTool tools = 2;
+  // Whether this server is currently enabled.
+  bool enabled = 3;
+  // The name of the server implementation.
+  string name = 4;
+  // The version of the server implementation.
+  string version = 5;
+  // A description of the server.
+  string description = 6;
+}
+
+// Represents a tool available on an MCP server.
+message McpTool {
+  // The name of the tool.
+  string name = 1;
+  // A description of what the tool does.
+  string description = 2;
+  // The input schema for using this tool, likely in JSON format.
+  string input_schema = 3;
+  // Whether this tool is currently enabled.
+  bool enabled = 4;
+  // Whether the user has selected "Always allow" for calling this tool.
+  bool always_allow = 5;
+}

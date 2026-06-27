@@ -1,0 +1,24 @@
+<!--
+  Copyright 2025 Lokman Ramdani
+  SPDX-License-Identifier: MIT
+-->
+
+<!-- kaiwa launcher foreground — the cream lettermark + red accent, padded to the adaptive safe zone. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="512"
+    android:viewportHeight="512">
+    <group
+        android:translateX="153.60"
+        android:translateY="323.24"
+        android:scaleX="0.1921"
+        android:scaleY="0.1921">
+        <path
+            android:fillColor="#9A9183"
+            android:pathData="M0,-67.5 V-632.5 H348 V-455.5 H188 V-67.5 Z M64,-126.5 H124 V-515.5 H284 V-572.5 H64 Z M718,-67.5 V-244.5 H878 V-632.5 H1066 V-67.5 Z M782,-127.5 H1002 V-573.5 H942 V-184.5 H782 Z" />
+        <path
+            android:fillColor="#E8503A"
+            android:pathData="M478,-700 H588 V0 H478 Z" />
+    </group>
+</vector>

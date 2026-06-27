@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright 2025 Lokman Ramdani
+  SPDX-License-Identifier: MIT
+-->
+
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="app.kaiwa"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-sdk
+        android:minSdkVersion="31"
+        android:compileSdkVersion ="37"
+        android:targetSdkVersion="37" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_CALENDAR" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC"/>
+    <!-- Back-tap gesture: a foreground service watches the accelerometer; SYSTEM_ALERT_WINDOW lets
+         it open the assistant overlay from the background (no system Quick Tap on GrapheneOS). -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE"/>
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <!-- Sample the accelerometer fast enough to catch a brief tap transient. -->
+    <uses-permission android:name="android.permission.HIGH_SAMPLING_RATE_SENSORS"/>
+    <!-- Screen reading: capture the screen (with the user's one-time grant) so the assistant can see it. -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PROJECTION"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="com.google.android.apps.aicore.service.BIND_SERVICE" />
+
+    <!-- See whether a real (external) speech recogniser exists, so voice-typing can default off on
+         de-Googled ROMs that have none. -->
+    <queries>
+        <intent>
+            <action android:name="android.speech.RecognitionService" />
+        </intent>
+    </queries>
+
+    <!-- Additional permission required for push notification handling -->
+    <!-- Required for resurfacing notifications after boot -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <!-- Required for GCM message handling -->
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <!-- Required for registering with Chime properly -->
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+    <!-- Required before JellyBean MR1, optional for newer versions of Android. -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+    <uses-feature android:name="android.hardware.camera.flash"
+        android:required="false" />
+
+    <application
+        android:name="${applicationName}"
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="${appIcon}"
+        android:label="Rin"
+        android:roundIcon="${appIcon}"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Gallery"
+        tools:targetApi="31">
+        <!--
+          android:configChanges="uiMode" tells the system don't destroy and
+          recreate the activity when UI mode changes (e.g. setting dark mode).
+          Instead, just recompose the view.
+         -->
+        <activity
+            android:name="app.kaiwa.MainActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Gallery.SplashScreen"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize"
+            android:configChanges="uiMode"
+            tools:ignore="DiscouragedApi,LockedOrientationActivity">
+            <!-- This is for putting the app into launcher -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <!-- This is for deep linking -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="app.kaiwa" />
+            </intent-filter>
+        </activity>
+
+        <!-- Gemma assistant: translucent popup launched when summoned as the digital assistant. -->
+        <activity
+            android:name=".assistant.AssistantOverlayActivity"
+            android:exported="false"
+            android:theme="@style/Theme.OkGemma.Assistant"
+            android:excludeFromRecents="true"
+            android:launchMode="singleInstance"
+            android:taskAffinity=""
+            android:screenOrientation="portrait"
+            android:configChanges="uiMode|orientation|screenSize|keyboardHidden"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            tools:ignore="DiscouragedApi,LockedOrientationActivity" />
+
+        <!-- Gemma assistant: voice interaction service (claims the digital-assistant role). -->
+        <service
+            android:name=".assistant.OkGemmaInteractionService"
+            android:exported="true"
+            android:permission="android.permission.BIND_VOICE_INTERACTION">
+            <meta-data
+                android:name="android.voice_interaction"
+                android:resource="@xml/assistant_interaction_service" />
+            <intent-filter>
+                <action android:name="android.service.voice.VoiceInteractionService" />
+            </intent-filter>
+        </service>
+
+        <service
+            android:name=".assistant.OkGemmaSessionService"
+            android:exported="true"
+            android:permission="android.permission.BIND_VOICE_INTERACTION" />
+
+        <service
+            android:name=".assistant.OkGemmaRecognitionService"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.speech.RecognitionService" />
+            </intent-filter>
+            <meta-data
+                android:name="android.speech"
+                android:resource="@xml/recognition_service" />
+        </service>
+
+        <!-- Set themes for activities that are used for viewing open source licenses -->
+        <activity
+            android:name="com.google.android.gms.oss.licenses.OssLicensesMenuActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Gallery.OssLicenses" />
+        <activity
+            android:name="com.google.android.gms.oss.licenses.OssLicensesActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Gallery.OssLicenses" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+        <service
+            android:name="androidx.work.impl.foreground.SystemForegroundService"
+            android:foregroundServiceType="dataSync"
+            android:exported="false"
+            tools:node="merge">
+        </service>
+
+        <!-- Captures the screen (after the user's grant) so the assistant can see it. -->
+        <service
+            android:name=".assistant.ScreenCaptureService"
+            android:exported="false"
+            android:foregroundServiceType="mediaProjection" />
+
+        <!-- Watches the accelerometer for a double-tap on the back of the phone to open the assistant. -->
+        <service
+            android:name=".assistant.BackTapService"
+            android:exported="false"
+            android:foregroundServiceType="specialUse">
+            <property
+                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+                android:value="Detects a double-tap on the phone's back to launch the on-device assistant, replacing the system Quick Tap shortcut that GrapheneOS does not provide." />
+        </service>
+
+        <receiver
+            android:name="app.kaiwa.notifications.NotificationReceiver"
+            android:exported="false" />
+
+        <receiver
+            android:name="app.kaiwa.notifications.BootReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <uses-native-library android:name="libvndksupport.so" android:required="false"/>
+        <uses-native-library android:name="libOpenCL.so" android:required="false"/>
+        <uses-native-library android:name="libcdsprpc.so" android:required="false" />
+        <uses-native-library android:name="libedgetpu_litert.so" android:required="false" />
+    </application>
+
+</manifest>

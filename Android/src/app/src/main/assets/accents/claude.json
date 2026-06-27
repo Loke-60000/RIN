@@ -1,0 +1,4 @@
+{
+  "light": {"primary":"#D97757","onPrimary":"#FFFFFF","primaryContainer":"#F5DDD2","onPrimaryContainer":"#3A1A0E","secondary":"#6A9BCC","secondaryContainer":"#F5DDD2","onSecondaryContainer":"#3A1A0E","error":"#BF4D43"},
+  "dark":  {"primary":"#E0926F","onPrimary":"#3A1A0E","primaryContainer":"#8A4530","onPrimaryContainer":"#F5DDD2","secondary":"#8AB0D6","secondaryContainer":"#8A4530","onSecondaryContainer":"#F5DDD2","error":"#E89A91"}
+}

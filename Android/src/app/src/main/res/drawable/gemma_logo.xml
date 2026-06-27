@@ -1,0 +1,22 @@
+<!--
+  Copyright 2025 Lokman Ramdani
+  SPDX-License-Identifier: MIT
+-->
+
+<!-- kaiwa symbol — washi-grey lettermark with the red accent stroke. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="120dp"
+    android:height="84dp"
+    android:viewportWidth="1174"
+    android:viewportHeight="828">
+    <group
+        android:translateX="64"
+        android:translateY="764">
+        <path
+            android:fillColor="#9A9183"
+            android:pathData="M0,-67.5 V-632.5 H348 V-455.5 H188 V-67.5 Z M64,-126.5 H124 V-515.5 H284 V-572.5 H64 Z M698,-67.5 V-244.5 H858 V-632.5 H1046 V-67.5 Z M762,-127.5 H982 V-573.5 H922 V-184.5 H762 Z" />
+        <path
+            android:fillColor="#E8503A"
+            android:pathData="M468,-700 H578 V0 H468 Z" />
+    </group>
+</vector>

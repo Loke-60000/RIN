@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright 2025 Lokman Ramdani
+  SPDX-License-Identifier: MIT
+-->
+
+<voice-interaction-service
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:sessionService="app.kaiwa.assistant.OkGemmaSessionService"
+    android:recognitionService="app.kaiwa.assistant.OkGemmaRecognitionService"
+    android:settingsActivity="app.kaiwa.MainActivity"
+    android:supportsAssist="true"
+    android:supportsLocalInteraction="true" />
